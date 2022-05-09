@@ -1,6 +1,7 @@
 package Frontend;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -8,23 +9,27 @@ import java.awt.event.KeyListener;
 
 public class Login extends JPanel implements ActionListener, KeyListener {
 
-    private String title = "Login";
-    private JLabel etiqueta;
+    private JLabel etiqueta1;
+    private JLabel etiqueta2;
     private JTextField user;
     private JPasswordField pass;
-    private JButton enter;
+    private JButton init;
     private String outPass;
 
     public Login()
     {
-        etiqueta = new JLabel(title);
+        etiqueta1 = new JLabel("Usuario");
+        etiqueta2 = new JLabel("Password");
         user = new JTextField(30);
         pass = new JPasswordField(30);
-        enter = new JButton("Iniciar");
+        init = new JButton("Iniciar");
+        add(etiqueta1);
         add(user);
+        add(etiqueta2);
         add(pass);
-        add(enter);
+        add(init);
         setSize(500,400);
+        setVisible(true);
     }
 
     public String getTitle(){
