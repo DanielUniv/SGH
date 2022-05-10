@@ -9,6 +9,7 @@ import java.awt.event.KeyListener;
 
 public class Login extends JPanel implements ActionListener, KeyListener {
 
+    private JLabel mesg;
     private JLabel etiqueta1;
     private JLabel etiqueta2;
     private JTextField user;
@@ -18,6 +19,7 @@ public class Login extends JPanel implements ActionListener, KeyListener {
 
     public Login()
     {
+        mesg = new JLabel("");
         etiqueta1 = new JLabel("Usuario");
         etiqueta2 = new JLabel("Password");
         user = new JTextField(30);
@@ -32,12 +34,24 @@ public class Login extends JPanel implements ActionListener, KeyListener {
         setVisible(true);
     }
 
-    public String getTitle(){
-        return title;
+    private void hashPass(){
+        char[] a = pass.getPassword();
+
     }
+
+    private void initSession(){
+
+    }
+
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
+        if(e.getActionCommand() == init.getActionCommand()) {
+
+        }else{
+
+        }
 
     }
 

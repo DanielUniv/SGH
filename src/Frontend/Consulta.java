@@ -1,4 +1,6 @@
 package Frontend;
 
-public class Consulta {
+import javax.swing.*;
+
+public class Consulta extends JPanel {
 }
