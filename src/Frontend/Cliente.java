@@ -21,7 +21,7 @@ public class Cliente extends JFrame implements ActionListener, KeyListener, Comp
         super("El Descanso");
 
         conet = new Conexion();
-        box.add(new JButton("Reload"),BorderLayout.NORTH);
+
 
         box = getContentPane();
         box.setLayout(new BorderLayout(5,5));
@@ -37,6 +37,7 @@ public class Cliente extends JFrame implements ActionListener, KeyListener, Comp
         ImageIcon logo=new ImageIcon("Imagenes\\Cloud.png");
         setIconImage(logo.getImage());
 
+        
         setVisible(true);
         setLocationRelativeTo(null);
     }

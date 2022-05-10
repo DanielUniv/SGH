@@ -19,18 +19,22 @@ public class Login extends JPanel implements ActionListener, KeyListener {
 
     public Login()
     {
+        setLayout(new FlowLayout());
+
+
         mesg = new JLabel("");
         etiqueta1 = new JLabel("Usuario");
         etiqueta2 = new JLabel("Password");
-        user = new JTextField(30);
-        pass = new JPasswordField(30);
+        user = new JTextField(15);
+        pass = new JPasswordField(15);
         init = new JButton("Iniciar");
         add(etiqueta1);
         add(user);
         add(etiqueta2);
         add(pass);
         add(init);
-        setSize(500,400);
+        setSize(300,400);
+        setBackground(null);
         setVisible(true);
     }
 
