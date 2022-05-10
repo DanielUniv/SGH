@@ -9,9 +9,11 @@ public class NavegacionBar extends JPanel implements ActionListener {
 
     private JButton[] botones;
 
-    public NavegacionBar(int ancho){
+    public NavegacionBar(int ancho, int cantBotones){
 
         setLayout(new FlowLayout());
+
+        botones = new JButton[cantBotones];
 
 
         setAncho(ancho);
