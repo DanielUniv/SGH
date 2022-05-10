@@ -21,7 +21,7 @@ public class Cliente extends JFrame implements ActionListener, KeyListener, Comp
         super("El Descanso");
 
         conet = new Conexion();
-
+        setContentPane(new JLabel(new ImageIcon("Imagenes\\Background.jpg")));
 
         box = getContentPane();
         box.setLayout(new BorderLayout(5,5));
@@ -32,15 +32,24 @@ public class Cliente extends JFrame implements ActionListener, KeyListener, Comp
         } catch(Exception error){
             System.out.println(error.getMessage());
         }
-        setResizable(false);
 
         ImageIcon logo=new ImageIcon("Imagenes\\Cloud.png");
         setIconImage(logo.getImage());
-
-        
+        setResizable(false);
         setVisible(true);
         setLocationRelativeTo(null);
     }
+
+    @Override
+    public void paint(Graphics g){
+
+        ImageIcon fondo = new ImageIcon("Imagenes\\Background.jpg");
+        g.drawImage(fondo.getImage(), 0,0,getWidth(),getHeight(),null);
+
+        super.paint(g);
+    }
+
+
 
     private void privilegios(){
 

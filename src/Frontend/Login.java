@@ -1,14 +1,17 @@
 package Frontend;
 
 import javax.swing.*;
+import javax.swing.plaf.basic.DefaultMenuLayout;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.Locale;
 
 public class Login extends JPanel implements ActionListener, KeyListener {
 
+    private JLabel title;
     private JLabel mesg;
     private JLabel etiqueta1;
     private JLabel etiqueta2;
@@ -21,19 +24,25 @@ public class Login extends JPanel implements ActionListener, KeyListener {
     {
         setLayout(new FlowLayout());
 
-
+        title = new JLabel("Hotel El Descanso");
         mesg = new JLabel("");
         etiqueta1 = new JLabel("Usuario");
         etiqueta2 = new JLabel("Password");
+
         user = new JTextField(15);
         pass = new JPasswordField(15);
         init = new JButton("Iniciar");
+
+        add(title);
+        add(mesg);
         add(etiqueta1);
         add(user);
         add(etiqueta2);
         add(pass);
         add(init);
-        setSize(300,400);
+
+        setOpaque(false);
+        setSize(300,350);
         setBackground(null);
         setVisible(true);
     }
