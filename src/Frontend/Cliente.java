@@ -1,11 +1,12 @@
 package Frontend;
 
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.security.KeyStore;
 
-public class Cliente extends JFrame implements ActionListener, KeyListener, ComponentListener {
+public class Cliente extends JFrame implements ActionListener {
 
     private Conexion conet;
     private Container box;
@@ -13,8 +14,7 @@ public class Cliente extends JFrame implements ActionListener, KeyListener, Comp
     private JPanel[] paneles = new JPanel[8];
     private NavegacionBar menuBar;
     private int actual = -1;
-    private int priv = 4;
-
+    private int priv = 0;
 
     public Cliente()
     {
@@ -33,9 +33,10 @@ public class Cliente extends JFrame implements ActionListener, KeyListener, Comp
             System.out.println(error.getMessage());
         }
 
+
         ImageIcon logo=new ImageIcon("Imagenes\\Cloud.png");
         setIconImage(logo.getImage());
-        setResizable(false);
+        setResizable(true);
         setVisible(true);
         setLocationRelativeTo(null);
     }
@@ -44,7 +45,8 @@ public class Cliente extends JFrame implements ActionListener, KeyListener, Comp
     public void paint(Graphics g){
 
         ImageIcon fondo = new ImageIcon("Imagenes\\Background.jpg");
-        g.drawImage(fondo.getImage(), 0,0,getWidth(),getHeight(),null);
+        g.drawImage(fondo.getImage(), 0, 0, getWidth(), getHeight(), null);
+
 
         super.paint(g);
     }
@@ -89,13 +91,13 @@ public class Cliente extends JFrame implements ActionListener, KeyListener, Comp
 
     private void actualizar(int a) throws Exception {
         if(actual >= 0){
-            box.remove(paneles[actual]);
+            box.remove(actual);
         }
         actual = a;
 
         if(paneles[actual] != null)
         {
-            box.add(paneles[actual],BorderLayout.CENTER);
+            box.add(paneles[actual],BorderLayout.CENTER,actual);
         }else
         {
             throw new Exception("Panel vacio, Posiblemente no tienes permisos");
@@ -113,41 +115,6 @@ public class Cliente extends JFrame implements ActionListener, KeyListener, Comp
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
-    }
-
-    @Override
-    public void componentResized(ComponentEvent e) {
-
-    }
-
-    @Override
-    public void componentMoved(ComponentEvent e) {
-
-    }
-
-    @Override
-    public void componentShown(ComponentEvent e) {
-
-    }
-
-    @Override
-    public void componentHidden(ComponentEvent e) {
-
-    }
-
-    @Override
-    public void keyTyped(KeyEvent e) {
-
-    }
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
 
     }
 }

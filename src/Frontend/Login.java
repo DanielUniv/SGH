@@ -9,7 +9,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.Locale;
 
-public class Login extends JPanel implements ActionListener, KeyListener {
+public class Login extends JPanel implements ActionListener {
 
     private JLabel title;
     private JLabel mesg;
@@ -18,7 +18,7 @@ public class Login extends JPanel implements ActionListener, KeyListener {
     private JTextField user;
     private JPasswordField pass;
     private JButton init;
-    private String outPass;
+    private String outLog;
 
     public Login()
     {
@@ -33,13 +33,13 @@ public class Login extends JPanel implements ActionListener, KeyListener {
         pass = new JPasswordField(15);
         init = new JButton("Iniciar");
 
-        add(title);
-        add(mesg);
-        add(etiqueta1);
-        add(user);
-        add(etiqueta2);
-        add(pass);
-        add(init);
+        add(title,0);
+        add(mesg,1);
+        add(etiqueta1,2);
+        add(user,3);
+        add(etiqueta2, 4);
+        add(pass, 5);
+        add(init,6);
 
         setOpaque(false);
         setSize(300,350);
@@ -59,8 +59,7 @@ public class Login extends JPanel implements ActionListener, KeyListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
-        if(e.getActionCommand() == init.getActionCommand()) {
+        if(e.getSource() == init) {
 
         }else{
 
@@ -68,18 +67,4 @@ public class Login extends JPanel implements ActionListener, KeyListener {
 
     }
 
-    @Override
-    public void keyTyped(KeyEvent e) {
-
-    }
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-
-    }
 }
