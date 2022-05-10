@@ -34,7 +34,7 @@ public class Cliente extends JFrame implements ActionListener {
         }
 
 
-        ImageIcon logo=new ImageIcon("Imagenes\\Cloud.png");
+        ImageIcon logo=new ImageIcon("Imagenes/Cloud.png");
         setIconImage(logo.getImage());
         setResizable(true);
         setVisible(true);
@@ -44,7 +44,7 @@ public class Cliente extends JFrame implements ActionListener {
     @Override
     public void paint(Graphics g){
 
-        ImageIcon fondo = new ImageIcon("Imagenes\\Background.jpg");
+        ImageIcon fondo = new ImageIcon("Imagenes/Background.jpg");
         g.drawImage(fondo.getImage(), 0, 0, getWidth(), getHeight(), null);
 
 

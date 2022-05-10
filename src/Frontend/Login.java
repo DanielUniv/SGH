@@ -24,22 +24,24 @@ public class Login extends JPanel implements ActionListener {
     {
         setLayout(new FlowLayout());
 
-        title = new JLabel("Hotel El Descanso");
+        title = new JLabel("");//"Hotel El Descanso"
+        //title.setIcon(new ImageIcon("Imagenes/Cloud.png"));
         mesg = new JLabel("");
         etiqueta1 = new JLabel("Usuario");
         etiqueta2 = new JLabel("Password");
-
         user = new JTextField(15);
+        user.setToolTipText("Escribe tu Usuario ejem: 11235");
         pass = new JPasswordField(15);
+        pass.setToolTipText("Escribe tu Constraseña asignada por tu Administrador");
         init = new JButton("Iniciar");
 
-        add(title,0);
-        add(mesg,1);
-        add(etiqueta1,2);
-        add(user,3);
-        add(etiqueta2, 4);
-        add(pass, 5);
-        add(init,6);
+        add(title);
+        add(mesg);
+        add(etiqueta1);
+        add(user);
+        add(etiqueta2);
+        add(pass);
+        add(init);
 
         setOpaque(false);
         setSize(300,350);
