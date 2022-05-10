@@ -21,7 +21,7 @@ public class Cliente extends JFrame implements ActionListener {
         super("El Descanso");
 
         conet = new Conexion();
-        setContentPane(new JLabel(new ImageIcon("Imagenes\\Background.jpg")));
+        setContentPane(new JLabel(new ImageIcon("Imagenes/Background.jpg")));
 
         box = getContentPane();
         box.setLayout(new BorderLayout(5,5));
@@ -40,18 +40,6 @@ public class Cliente extends JFrame implements ActionListener {
         setVisible(true);
         setLocationRelativeTo(null);
     }
-
-    @Override
-    public void paint(Graphics g){
-
-        ImageIcon fondo = new ImageIcon("Imagenes/Background.jpg");
-        g.drawImage(fondo.getImage(), 0, 0, getWidth(), getHeight(), null);
-
-
-        super.paint(g);
-    }
-
-
 
     private void privilegios(){
 
