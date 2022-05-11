@@ -36,14 +36,11 @@ public class Cliente extends JFrame implements ActionListener {
 
         ImageIcon logo=new ImageIcon("Imagenes/Cloud.png");
         setIconImage(logo.getImage());
-        setResizable(true);
+        setResizable(false);
         setVisible(true);
         setLocationRelativeTo(null);
     }
 
-    private void privilegios(){
-
-    }
 
     private void initPanel(int tipo){
 
@@ -52,27 +49,17 @@ public class Cliente extends JFrame implements ActionListener {
                 paneles[0] = new Login();
                 break;
             case 1:
-                paneles[1] = new Navegacion();
+                paneles[1] = new PanelRecepcionista();
                 break;
             case 2:
-                paneles[2] = new Reserva_y_Registro();
+                paneles[2] = new PanelCajero();
                 break;
             case 3:
-                paneles[3] = new Consulta();
+                paneles[3] = new PanelGerente();
                 break;
             case 4:
-                paneles[4] = new Caja();
+                paneles[4] = new PanelAdmin();
                 break;
-            case 5:
-                paneles[5] = new Estadistica();
-                break;
-            case 6:
-                paneles[6] = new Modificacion();
-                break;
-            case 7:
-                paneles[7] = new Registro_Usuario();
-                break;
-
         }
 
     }
