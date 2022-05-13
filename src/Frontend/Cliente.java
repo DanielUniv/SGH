@@ -4,31 +4,34 @@ package Frontend;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.security.KeyStore;
 
 public class Cliente extends JFrame implements ActionListener {
 
-    private Conexion conet;
     private Container box;
-    private LayoutStyle estyle;
-    private JPanel[] paneles = new JPanel[8];
-    private NavegacionBar menuBar;
-    private int actual = -1;
-    private int priv = 0;
+    private Toolkit herramienta;
+    private int sizeX,sizeY;
+    private JPanel[] panel;
+    private int actual;
+    private int priv;
 
     public Cliente()
     {
         super("El Descanso");
 
-        conet = new Conexion();
+        herramienta = Toolkit.getDefaultToolkit();
+        this.sizeX = (int)(herramienta.getScreenSize().getWidth());
+        this.sizeY = (int)(herramienta.getScreenSize().getHeight());
+
+        panel = new JPanel[5];
+        actual = -1;
+        priv = 4;
+
         setContentPane(new JLabel(new ImageIcon("Imagenes/Background.jpg")));
-
         box = getContentPane();
-        box.setLayout(new BorderLayout(5,5));
+        box.setLayout(null);
 
-        initPanel(0);
         try {
-            actualizar(0);
+            actualizar(priv);
         } catch(Exception error){
             System.out.println(error.getMessage());
         }
@@ -42,45 +45,52 @@ public class Cliente extends JFrame implements ActionListener {
     }
 
 
-    private void initPanel(int tipo){
+    private void initPanel(int tipo) throws Exception {
 
-        switch(tipo){
-            case 0:
-                paneles[0] = new Login();
-                break;
-            case 1:
-                paneles[1] = new PanelRecepcionista();
-                break;
-            case 2:
-                paneles[2] = new PanelCajero();
-                break;
-            case 3:
-                paneles[3] = new PanelGerente();
-                break;
-            case 4:
-                paneles[4] = new PanelAdmin();
-                break;
+        if (tipo == priv){
+            switch(tipo){
+                case 0:
+                    panel[0] = new Login(sizeX,sizeY);
+                    break;
+                case 1:
+                    panel[1] = new PanelRecepcionista(sizeX,sizeY,false);
+                    break;
+                case 2:
+                    panel[2] = new PanelCajero(sizeX,sizeY,false);
+                    break;
+                case 3:
+                    panel[3] = new PanelGerente(sizeX,sizeY,false);
+                    break;
+                case 4:
+                    panel[4] = new PanelAdmin(sizeX,sizeY);
+                    break;
+                default:
+            }
+        }else{
+            throw new Exception("No tienes los pribilegios para esas funciones");
         }
-
     }
 
-    private void actualizar(int a) throws Exception {
+    private void actualizar(int num) throws Exception {
         if(actual >= 0){
-            box.remove(actual);
+            panel[actual].setVisible(false);
+            box.remove(panel[actual]);
+            panel[actual] = null;
         }
-        actual = a;
 
-        if(paneles[actual] != null)
+        actual = num;
+        initPanel(actual);
+
+        if(panel[actual] != null)
         {
-            box.add(paneles[actual],BorderLayout.CENTER,actual);
-        }else
+            panel[actual].setBounds(5,5,panel[actual].getWidth(),panel[actual].getHeight());
+            setSize(panel[actual].getWidth()+ 10,panel[actual].getHeight()+10);
+            box.add(panel[actual]);
+            setLocationRelativeTo(null);
+        }else if(panel[actual] == null)
         {
             throw new Exception("Panel vacio, Posiblemente no tienes permisos");
         }
-
-
-        setSize(paneles[actual].getWidth()+ 15,paneles[actual].getHeight()+10);
-        setLocationRelativeTo(null);
     }
 
     public static void main(String[] args){

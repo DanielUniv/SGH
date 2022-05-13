@@ -7,18 +7,23 @@ import java.awt.event.ActionListener;
 
 public class Login extends JPanel implements ActionListener {
 
+    private int sizeX;
+    private int sizeY;
     private JLabel title;
-    private JLabel mesg;
     private JLabel etiqueta1;
     private JLabel etiqueta2;
     private JTextField user;
     private JPasswordField pass;
     private JButton init;
+    private JTextArea mesg;
     private String outLog;
 
-    public Login()
+    public Login(int sizex,int sizey)
     {
-        setLayout(null);//
+        setLayout(null);
+        sizeX = (int) (sizex * 0.22);
+        sizeY = (int) (sizey * 0.457);
+        setSize(sizeX,sizeY);
 
         title = new JLabel("Hotel El Descanso");
         ImageIcon icono = new ImageIcon("Imagenes/Cloud.png");
@@ -27,26 +32,37 @@ public class Login extends JPanel implements ActionListener {
         title.setHorizontalTextPosition(JLabel.CENTER);
         title.setVerticalTextPosition(JLabel.BOTTOM);
 
-        mesg = new JLabel("");
         etiqueta1 = new JLabel("Usuario");
         etiqueta2 = new JLabel("Contraseña");
 
-        user = new JTextField(15);
+        //title.setFont(title.getFont().deriveFont((float) (sizeY * 0.02858)));
+        //etiqueta1.setFont(etiqueta1.getFont().deriveFont(10F /*(float) (sizeY * 0.02858)*/));
+        //etiqueta2.setFont(etiqueta2.getFont().deriveFont(10F /*(float) (sizeY * 0.02858)*/));
+        //title.setFont(title.getFont().deriveFont(10.4F)); is how change the Font size
+
+        user = new JTextField();
         user.setToolTipText("Escribe tu Usuario/Codigo de Empleado");
 
-        pass = new JPasswordField(15);
+        pass = new JPasswordField();
         pass.setToolTipText("Escribe tu Constraseña asignada por tu Administrador");
 
         init = new JButton("Iniciar");
         init.addActionListener(this);
 
-        title.setBounds(99,25,102,100 );
-        etiqueta1.setBounds(55,145,50,20);
-        etiqueta2.setBounds(55,180,66,20);
-        user.setBounds(125,145,120,20);
-        pass.setBounds(125,180,120,20);
-        init.setBounds(110,215,80,30);
-        mesg.setBounds(50,260,200,20);
+        mesg = new JTextArea();
+        mesg.setLineWrap(true);
+        mesg.setWrapStyleWord(true);
+        mesg.setOpaque(false);
+
+
+
+        title.setBounds((int) (sizeX * 0.33),(int)(sizeY * 0.071),(int) (sizeX * 0.34),(int)(sizeY * 0.28571));
+        etiqueta1.setBounds((int) (sizeX * 0.184),(int) (sizeY * 0.415),(int)(sizeX * 0.22),(int)(sizeY * 0.0572));
+        etiqueta2.setBounds((int) (sizeX * 0.184),(int)(sizeY * 0.5143),(int)(sizeX * 0.22),(int)(sizeY * 0.0572));
+        user.setBounds((int)(sizeX * 0.4167),(int) (sizeY * 0.415),(int)(sizeX * 0.4),(int)(sizeY * 0.0572));
+        pass.setBounds((int)(sizeX * 0.4167),(int)(sizeY * 0.5143),(int)(sizeX * 0.4),(int)(sizeY * 0.0572));
+        init.setBounds((int)(sizeX * 0.367),(int)(sizeY * 0.6143),(int)(sizeX * 0.2667),(int)(sizeY * 0.08572));
+        mesg.setBounds((int)(sizeX * 0.167),(int)(sizeY * 0.743),(int)(sizeX * 0.6667),(int)(sizeY * 0.1144));
 
 
 
@@ -60,7 +76,6 @@ public class Login extends JPanel implements ActionListener {
 
 
         setOpaque(false);
-        setSize(300,350);
         setBackground(null);
         setVisible(true);
     }
@@ -90,7 +105,7 @@ public class Login extends JPanel implements ActionListener {
             }else if(pass.getPassword() == null){
                 error("Ingrese la Contraseña");
             }else{
-
+                error("Contraseña o Usuario Erroneo");
             }
         }
     }
