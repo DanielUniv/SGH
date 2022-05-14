@@ -40,6 +40,7 @@ public class DataBasesManager {
 
     public String consultaEspecial(String query) throws SQLException {
         orden = net.prepareStatement(query);
+        return query;
     }
 
 }

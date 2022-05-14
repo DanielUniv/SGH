@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 
 public class PanelAdmin extends JPanel implements ActionListener {
 
+    private Cliente referencia;
     private int sizeX,sizeY;
     private JButton logout;
     private JComboBox<String> funciones;
@@ -17,13 +18,14 @@ public class PanelAdmin extends JPanel implements ActionListener {
     private JButton boton1,boton2,boton3,boton4,boton5,boton6;
 
 
-    public PanelAdmin(int sizex,int sizey){
+    public PanelAdmin(int sizex,int sizey,Cliente referencia){
 
         setLayout(null);
         this.sizeX = (int) (sizex * 0.80);
         this.sizeY = (int) (sizey * 0.90);
         setSize(sizeX,sizeY);
-        System.out.println(getSize());
+
+        this.referencia = referencia;
 
         logout = new JButton();
         logout.setIcon(loadIcon(0));
@@ -32,6 +34,14 @@ public class PanelAdmin extends JPanel implements ActionListener {
         usertype = new String[]{"Administrador","Gerente","Cajero","Recepcionista"};
         funciones = new JComboBox<>(usertype);
 
+        reload = new JButton();
+        reload.setIcon(loadIcon(1));
+        reload.setEnabled(false);
+
+        back = new JButton();
+        back.setIcon(loadIcon(2));
+        back.setEnabled(false);
+
         boton1 = new JButton("Usuarios");
         boton2 = new JButton("Clientes");
         boton3 = new JButton("Habitaciones");
@@ -39,8 +49,11 @@ public class PanelAdmin extends JPanel implements ActionListener {
         boton5 = new JButton("Servicios");
         boton6 = new JButton("Ingresos");
 
+
         logout.addActionListener(this);
         funciones.addActionListener(this);
+        reload.addActionListener(this);
+        back.addActionListener(this);
         boton1.addActionListener(this);
         boton2.addActionListener(this);
         boton3.addActionListener(this);
@@ -48,8 +61,12 @@ public class PanelAdmin extends JPanel implements ActionListener {
         boton5.addActionListener(this);
         boton6.addActionListener(this);
 
+
+
         logout.setBounds((int)(sizeX * 0.927),(int) (sizeY * 0.0724),(int)(sizeX * 0.0275),(int)(sizeY * 0.044));
         funciones.setBounds((int)(sizeX * 0.80),(int)(sizeY * 0.0724),(int)(sizeX * 0.1191),(int)(sizeY * 0.044));
+        reload.setBounds((int)(sizeX * 0.1005),(int) (sizeY * 0.0724),(int)(sizeX * 0.0275),(int)(sizeY * 0.044));
+        back.setBounds((int)(sizeX * 0.073),(int) (sizeY * 0.0724),(int)(sizeX * 0.0275),(int)(sizeY * 0.044));
         boton1.setBounds((int)(sizeX * 0.15),(int)(sizeY * 0.30),(int)(sizeX * 0.1391),(int)(sizeY * 0.088));
         boton2.setBounds((int)(sizeX * 0.15),(int)(sizeY * 0.45),(int)(sizeX * 0.1391),(int)(sizeY * 0.088));
         boton3.setBounds((int)(sizeX * 0.15),(int)(sizeY * 0.60),(int)(sizeX * 0.1391),(int)(sizeY * 0.088));
@@ -59,6 +76,8 @@ public class PanelAdmin extends JPanel implements ActionListener {
 
         add(logout);
         add(funciones);
+        add(reload);
+        add(back);
         add(boton1);
         add(boton2);
         add(boton3);
@@ -71,21 +90,6 @@ public class PanelAdmin extends JPanel implements ActionListener {
         setVisible(true);
     }
 
-    private void navegacion(){
-        reload = new JButton();
-        reload.setIcon(loadIcon(1));
-        reload.addActionListener(this);
-
-        back = new JButton();
-        back.setIcon(loadIcon(2));
-        back.addActionListener(this);
-
-        reload.setBounds((int)(sizeX * 0.1005),(int) (sizeY * 0.0724),(int)(sizeX * 0.0275),(int)(sizeY * 0.044));
-        back.setBounds((int)(sizeX * 0.073),(int) (sizeY * 0.0724),(int)(sizeX * 0.0275),(int)(sizeY * 0.044));
-
-        add(reload);
-        add(back);
-    }
 
     private void mostrarBotones(){
         add(boton1);
@@ -130,7 +134,7 @@ public class PanelAdmin extends JPanel implements ActionListener {
                 ruta ="Imagenes/Back.png";
         }
         ImageIcon icon = new ImageIcon(ruta);
-        icon.setImage(icon.getImage().getScaledInstance(30,30, Image.SCALE_SMOOTH));
+        icon.setImage(icon.getImage().getScaledInstance((int)(sizeX * 0.0275),(int)(sizeY * 0.044), Image.SCALE_SMOOTH));
         return icon;
     }
 
@@ -138,9 +142,15 @@ public class PanelAdmin extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == boton1){
             ocultarBotones();
-        }else
+            back.setEnabled(true);
+        }else if(e.getSource() == back)
         {
+            back.setEnabled(false);
             mostrarBotones();
+        }
+
+        if(e.getSource() == logout){
+            referencia.cerrarSesion();
         }
     }
 }

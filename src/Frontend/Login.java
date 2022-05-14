@@ -4,11 +4,16 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.math.BigInteger;
 
 public class Login extends JPanel implements ActionListener {
 
     private int sizeX;
     private int sizeY;
+    private Cliente referencia;
     private JLabel title;
     private JLabel etiqueta1;
     private JLabel etiqueta2;
@@ -16,14 +21,17 @@ public class Login extends JPanel implements ActionListener {
     private JPasswordField pass;
     private JButton init;
     private JTextArea mesg;
+    private String salt;
     private String outLog;
 
-    public Login(int sizex,int sizey)
+    public Login(int sizex,int sizey,Cliente referencia)
     {
         setLayout(null);
         sizeX = (int) (sizex * 0.22);
         sizeY = (int) (sizey * 0.457);
         setSize(sizeX,sizeY);
+
+        this.referencia = referencia;
 
         title = new JLabel("Hotel El Descanso");
         ImageIcon icono = new ImageIcon("Imagenes/Cloud.png");
@@ -44,12 +52,14 @@ public class Login extends JPanel implements ActionListener {
         user.setToolTipText("Escribe tu Usuario/Codigo de Empleado");
 
         pass = new JPasswordField();
+        pass.setText("");
         pass.setToolTipText("Escribe tu Constraseña asignada por tu Administrador");
 
         init = new JButton("Iniciar");
         init.addActionListener(this);
 
         mesg = new JTextArea();
+        mesg.setEditable(false);
         mesg.setLineWrap(true);
         mesg.setWrapStyleWord(true);
         mesg.setOpaque(false);
@@ -81,11 +91,24 @@ public class Login extends JPanel implements ActionListener {
     }
 
     private void hashPass(){
-        char[] a = pass.getPassword();
-
+        String entrada = String.valueOf(pass.getPassword()) + salt;
+        System.out.println(salt);
+        try {
+            MessageDigest sumador = MessageDigest.getInstance("SHA-512");
+            sumador.update(entrada.getBytes());
+            byte[] sumado = sumador.digest();
+            BigInteger conv = new BigInteger(1,sumado);
+            outLog = conv.toString(16);
+            System.out.println(outLog);
+            System.out.println(outLog.length());
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+            System.out.println("Error sacando sha5");
+        }
+        referencia.contrasenaListo(outLog);
     }
 
-    private void error(String er){
+    public void error(String er){
         this.mesg.setVisible(false);
         this.mesg.setText(er);
         this.mesg.setForeground(Color.RED);
@@ -93,19 +116,24 @@ public class Login extends JPanel implements ActionListener {
     }
 
     private void initSession(){
+        referencia.usuarioListo(user.getText());
+    }
 
+    public void setSalt(String sal){
+        salt = sal;
+        hashPass();
     }
 
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == init) {
-            if (user.getText() == null){
+            if (user.getText().equals("")){
                 error("Ingrese el Usuario");
-            }else if(pass.getPassword() == null){
+            }else if(String.valueOf(pass.getPassword()).equals("")){
                 error("Ingrese la Contraseña");
             }else{
-                error("Contraseña o Usuario Erroneo");
+                initSession();
             }
         }
     }
