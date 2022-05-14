@@ -1,6 +1,7 @@
 package Frontend;
 
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -88,6 +89,7 @@ public class Login extends JPanel implements ActionListener {
         setOpaque(false);
         setBackground(null);
         setVisible(true);
+        setBorder(new LineBorder(Color.RED));
     }
 
     private void hashPass(){

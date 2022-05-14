@@ -7,6 +7,7 @@ import Frontend.SubPanelGerente.PanelGerente;
 import Frontend.SubPanelRecepcionista.PanelRecepcionista;
 
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 
 public class Cliente extends JFrame{
@@ -81,7 +82,7 @@ public class Cliente extends JFrame{
                     break;
                 default:
             }
-        }else if(priv == 4 & tipo != priv){
+        }else if(priv == 4 && tipo != priv){
 
         }else{
             throw new Exception("No tienes los pribilegios para esas funciones");
@@ -101,7 +102,7 @@ public class Cliente extends JFrame{
         if(panel[actual] != null)
         {
             panel[actual].setBounds(5,5,panel[actual].getWidth(),panel[actual].getHeight());
-            setSize(panel[actual].getWidth()+ 10,panel[actual].getHeight()+10);
+            setSize((panel[actual].getWidth()+ 10),(panel[actual].getHeight() + 10));
             box.add(panel[actual]);
             setLocationRelativeTo(null);
         }else if(panel[actual] == null)

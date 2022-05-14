@@ -9,7 +9,6 @@ import java.awt.event.KeyListener;
 public class Estadistica extends JPanel implements ActionListener, KeyListener {
 
 
-
     @Override
     public void actionPerformed(ActionEvent e) {
 
