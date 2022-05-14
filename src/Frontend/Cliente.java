@@ -27,7 +27,7 @@ public class Cliente extends JFrame{
 
         panel = new JPanel[5];
         actual = -1;
-        priv = 4;
+        priv = 0;
 
         setContentPane(new JLabel(new ImageIcon("Imagenes/Background.jpg")));
         box = getContentPane();

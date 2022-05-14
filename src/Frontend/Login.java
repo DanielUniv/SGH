@@ -92,7 +92,6 @@ public class Login extends JPanel implements ActionListener {
 
     private void hashPass(){
         String entrada = String.valueOf(pass.getPassword()) + salt;
-        System.out.println(salt);
         try {
             MessageDigest sumador = MessageDigest.getInstance("SHA-512");
             sumador.update(entrada.getBytes());
