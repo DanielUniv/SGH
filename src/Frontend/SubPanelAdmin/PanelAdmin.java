@@ -64,9 +64,9 @@ public class PanelAdmin extends JPanel implements ActionListener {
 
 
 
-        logout.setBounds((int)(sizeX * 0.8995),(int) (sizeY * 0.0724),(int)(sizeX * 0.0275),(int)(sizeY * 0.044));
+        logout.setBounds((int)(sizeX * 0.936),(int) (sizeY * 0.0724),(int)(sizeX * 0.0275),(int)(sizeY * 0.044));
         funciones.setBounds((int)(sizeX * 0.7804),(int)(sizeY * 0.0724),(int)(sizeX * 0.1191),(int)(sizeY * 0.044));
-        back.setBounds((int)(sizeX * 0.073),(int) (sizeY * 0.0724),(int)(sizeX * 0.0275),(int)(sizeY * 0.044));
+        back.setBounds((int)(sizeX * 0.0365),(int) (sizeY * 0.0724),(int)(sizeX * 0.0275),(int)(sizeY * 0.044));
         boton1.setBounds((int)(sizeX * 0.15),(int)(sizeY * 0.30),(int)(sizeX * 0.1391),(int)(sizeY * 0.088));
         boton2.setBounds((int)(sizeX * 0.15),(int)(sizeY * 0.45),(int)(sizeX * 0.1391),(int)(sizeY * 0.088));
         boton3.setBounds((int)(sizeX * 0.15),(int)(sizeY * 0.60),(int)(sizeX * 0.1391),(int)(sizeY * 0.088));
@@ -140,6 +140,24 @@ public class PanelAdmin extends JPanel implements ActionListener {
         switch (tipo){
             case 0:
                 subPanel[tipo] = new Manejo_Usuarios((int)(sizeX *0.854 ),(int)(sizeY * 0.699),this);
+                break;
+            case 1:
+                subPanel[tipo] = new Manejo_Clientes(0,0,null);
+                break;
+            case 2:
+                //subPanel[tipo] = new Manejo_Habitaciones();
+                break;
+            case 3:
+                //subPanel[tipo] = new Manejo_Reservas();
+                break;
+            case 4:
+                //subPanel[tipo] = new Manejo_Servicios();
+                break;
+            case 5:
+                //subPanel[tipo] = new Manejo_Ingresos();
+                break;
+            case 6:
+                //subPanel[tipo] = new Manejo_SQL();
         }
 
     }
@@ -152,7 +170,9 @@ public class PanelAdmin extends JPanel implements ActionListener {
         }
 
         panelactual = cambio;
-        initSubPanel(panelactual);
+        if(panelactual >= 0 && panelactual < 7) {
+            initSubPanel(panelactual);
+        }
 
         try {
             if (subPanel[panelactual] != null && panelactual >= 0) {
