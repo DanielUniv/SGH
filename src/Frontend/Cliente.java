@@ -1,9 +1,13 @@
 package Frontend;
 
 
+import Frontend.SubPanelAdmin.PanelAdmin;
+import Frontend.SubPanelCajero.PanelCajero;
+import Frontend.SubPanelGerente.PanelGerente;
+import Frontend.SubPanelRecepcionista.PanelRecepcionista;
+
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
 
 public class Cliente extends JFrame{
 
@@ -21,33 +25,41 @@ public class Cliente extends JFrame{
     {
         super("El Descanso");
 
+        //Coge el tamaño de la pantalla para ajustar las dimenciones del programa
         herramienta = Toolkit.getDefaultToolkit();
         this.sizeX = (int)(herramienta.getScreenSize().getWidth());
         this.sizeY = (int)(herramienta.getScreenSize().getHeight());
 
-        panel = new JPanel[5];
+        //Valores iniciales del programa y cada pestaña nula hasta que se vaya ha usar
+        panel = new JPanel[]{null,null,null,null,null};
+        //al inicio del programa no tiene ninguna pestaña por eso la pestaña actual es menor a 0
         actual = -1;
+        //al no estar la sesion iniciada tiene 0 privilegios
         priv = 0;
 
+        //se inserta el fondo del programa y el estilo
         setContentPane(new JLabel(new ImageIcon("Imagenes/Background.jpg")));
         box = getContentPane();
         box.setLayout(null);
 
+        //actualizamos a iniciar la pestaña Login.
         try {
             actualizar();
         } catch(Exception error){
             System.out.println(error.getMessage());
         }
 
-
+        //se inserta el logo de programa y sus caracteristicas.
         ImageIcon logo=new ImageIcon("Imagenes/Cloud.png");
         setIconImage(logo.getImage());
         setResizable(false);
         setVisible(true);
+        //se centra la pantalla automaticamente.
         setLocationRelativeTo(null);
     }
 
 
+    //le pasan un entero del 0 a 4 para inicializar un tipo de pestaña
     private void initPanel(int tipo) throws Exception {
 
         if (tipo == priv){
@@ -69,6 +81,8 @@ public class Cliente extends JFrame{
                     break;
                 default:
             }
+        }else if(priv == 4 & tipo != priv){
+
         }else{
             throw new Exception("No tienes los pribilegios para esas funciones");
         }

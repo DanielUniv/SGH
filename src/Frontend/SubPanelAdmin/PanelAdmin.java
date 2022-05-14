@@ -1,4 +1,5 @@
-package Frontend;
+package Frontend.SubPanelAdmin;
+import Frontend.Cliente;
 
 import javax.swing.*;
 import javax.swing.JComboBox;

@@ -1,4 +1,4 @@
-package Frontend;
+package Frontend.SubPanelCajero;
 
 import javax.swing.*;
 

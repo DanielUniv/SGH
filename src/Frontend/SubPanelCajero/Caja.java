@@ -1,4 +1,4 @@
-package Frontend;
+package Frontend.SubPanelCajero;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -6,10 +6,15 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class Modificacion extends JPanel implements ActionListener, KeyListener {
+public class Caja extends JPanel implements ActionListener, KeyListener {
+
+    public Caja(){
+
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
-        
+
     }
 
     @Override

@@ -1,4 +1,4 @@
-package Frontend;
+package Frontend.SubPanelRecepcionista;
 
 import javax.swing.*;
 

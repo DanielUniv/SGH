@@ -1,4 +1,4 @@
-package Frontend;
+package Frontend.SubPanelGerente;
 
 import javax.swing.*;
 
