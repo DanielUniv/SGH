@@ -34,7 +34,7 @@ public class DataBasesManager {
             }
             orden.executeQuery();
         }catch (Exception e){
-
+            System.out.println(e + " - cantidad de datos erronea");
         }
     }
 

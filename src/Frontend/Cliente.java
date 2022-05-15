@@ -10,20 +10,18 @@ import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 
+//Clase padre que maneja todas las pestañas y la comunicacion entre los diferentes componentes
 public class Cliente extends JFrame{
 
     private Container box;
     private Toolkit herramienta;
     private int sizeX,sizeY;
-    private String usuario;
-    private String contrasena;
+    private String usuario,contrasena;
     private JPanel[] panel;
-    private int actual;
-    private int priv;
+    private int actual,priv;
 
-
-    public Cliente()
-    {
+    //Constructor de la clase principal del programa
+    public Cliente(){
         super("El Descanso");
 
         //Coge el tamaño de la pantalla para ajustar las dimenciones del programa
@@ -58,7 +56,6 @@ public class Cliente extends JFrame{
         //se centra la pantalla automaticamente.
         setLocationRelativeTo(null);
     }
-
 
     //le pasan un entero del 0 a 4 para inicializar un tipo de pestaña
     private void initPanel(int tipo) throws Exception {
