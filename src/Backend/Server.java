@@ -3,7 +3,7 @@ package Backend;
 import java.io.IOException;
 import java.net.ServerSocket;
 
-public class Server implements Runnable{
+public class Server{
 
     private ServerSocket conexion;
     private DataBasesManager DB;
@@ -23,8 +23,4 @@ public class Server implements Runnable{
     }
 
 
-    @Override
-    public void run() {
-
-    }
 }

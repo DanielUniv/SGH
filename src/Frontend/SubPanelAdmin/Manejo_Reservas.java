@@ -2,11 +2,12 @@ package Frontend.SubPanelAdmin;
 
 import javax.swing.*;
 
-public class Manejo_Clientes extends JPanel {
+public class Manejo_Reservas extends JPanel {
 
     private PanelAdmin admin;
     private int sizeX,sizeY;
-    public Manejo_Clientes(int sizex,int sizey,PanelAdmin admin){
+
+    public Manejo_Reservas(int sizex,int sizey,PanelAdmin admin){
         this.sizeX = sizex;
         this.sizeY = sizey;
         setSize(sizeX,sizeY);
@@ -16,4 +17,5 @@ public class Manejo_Clientes extends JPanel {
         setOpaque(false);
         setVisible(true);
     }
+
 }

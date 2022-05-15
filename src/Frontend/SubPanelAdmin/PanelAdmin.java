@@ -19,7 +19,7 @@ public class PanelAdmin extends JPanel implements ActionListener {
     private JButton back;
     private int panelactual;
     private JPanel[] subPanel;
-    private JButton boton1,boton2,boton3,boton4,boton5,boton6;
+    private JButton boton1,boton2,boton3,boton4,boton5,boton6,boton7;
 
 
     public PanelAdmin(int sizex,int sizey,Cliente referencia){
@@ -30,7 +30,7 @@ public class PanelAdmin extends JPanel implements ActionListener {
         setSize(sizeX,sizeY);
 
         this.referencia = referencia;
-        subPanel = new JPanel[]{null,null,null,null,null,null};
+        subPanel = new JPanel[]{null,null,null,null,null,null,null};
         panelactual = -1;
 
         logout = new JButton();
@@ -50,6 +50,7 @@ public class PanelAdmin extends JPanel implements ActionListener {
         boton4 = new JButton("Reservas");
         boton5 = new JButton("Servicios");
         boton6 = new JButton("Ingresos");
+        boton7 = new JButton("Consola SQL");
 
 
         logout.addActionListener(this);
@@ -61,6 +62,7 @@ public class PanelAdmin extends JPanel implements ActionListener {
         boton4.addActionListener(this);
         boton5.addActionListener(this);
         boton6.addActionListener(this);
+        boton7.addActionListener(this);
 
 
 
@@ -73,6 +75,7 @@ public class PanelAdmin extends JPanel implements ActionListener {
         boton4.setBounds((int)(sizeX * 0.35),(int)(sizeY * 0.30),(int)(sizeX * 0.1391),(int)(sizeY * 0.088));
         boton5.setBounds((int)(sizeX * 0.35),(int)(sizeY * 0.45),(int)(sizeX * 0.1391),(int)(sizeY * 0.088));
         boton6.setBounds((int)(sizeX * 0.35),(int)(sizeY * 0.60),(int)(sizeX * 0.1391),(int)(sizeY * 0.088));
+        boton7.setBounds((int)(sizeX * 0.55),(int)(sizeY * 0.30),(int)(sizeX * 0.1391),(int)(sizeY * 0.088));
 
         add(logout);
         add(funciones);
@@ -83,6 +86,7 @@ public class PanelAdmin extends JPanel implements ActionListener {
         add(boton4);
         add(boton5);
         add(boton6);
+        add(boton7);
 
         setOpaque(false);
         setBackground(null);
@@ -98,12 +102,14 @@ public class PanelAdmin extends JPanel implements ActionListener {
         add(boton4);
         add(boton5);
         add(boton6);
+        add(boton7);
         boton1.setVisible(true);
         boton2.setVisible(true);
         boton3.setVisible(true);
         boton4.setVisible(true);
         boton5.setVisible(true);
         boton6.setVisible(true);
+        boton7.setVisible(true);
     }
 
     private void ocultarBotones(){
@@ -113,12 +119,14 @@ public class PanelAdmin extends JPanel implements ActionListener {
         boton4.setVisible(false);
         boton5.setVisible(false);
         boton6.setVisible(false);
+        boton7.setVisible(false);
         remove(boton1);
         remove(boton2);
         remove(boton3);
         remove(boton4);
         remove(boton5);
         remove(boton6);
+        remove(boton7);
     }
 
     private Icon loadIcon(int imagen){
@@ -142,22 +150,22 @@ public class PanelAdmin extends JPanel implements ActionListener {
                 subPanel[tipo] = new Manejo_Usuarios((int)(sizeX *0.854 ),(int)(sizeY * 0.699),this);
                 break;
             case 1:
-                subPanel[tipo] = new Manejo_Clientes(0,0,null);
+                subPanel[tipo] = new Manejo_Clientes((int)(sizeX *0.854 ),(int)(sizeY * 0.699),this);
                 break;
             case 2:
-                //subPanel[tipo] = new Manejo_Habitaciones();
+                subPanel[tipo] = new Manejo_Habitaciones((int)(sizeX *0.854 ),(int)(sizeY * 0.699),this);
                 break;
             case 3:
-                //subPanel[tipo] = new Manejo_Reservas();
+                subPanel[tipo] = new Manejo_Reservas((int)(sizeX *0.854 ),(int)(sizeY * 0.699),this);
                 break;
             case 4:
-                //subPanel[tipo] = new Manejo_Servicios();
+                subPanel[tipo] = new Manejo_Servicios((int)(sizeX *0.854 ),(int)(sizeY * 0.699),this);
                 break;
             case 5:
-                //subPanel[tipo] = new Manejo_Ingresos();
+                subPanel[tipo] = new Manejo_Ingresos((int)(sizeX *0.854 ),(int)(sizeY * 0.699),this);
                 break;
             case 6:
-                //subPanel[tipo] = new Manejo_SQL();
+                subPanel[tipo] = new Manejo_SQL((int)(sizeX *0.854 ),(int)(sizeY * 0.699),this);
         }
 
     }
@@ -170,41 +178,63 @@ public class PanelAdmin extends JPanel implements ActionListener {
         }
 
         panelactual = cambio;
-        if(panelactual >= 0 && panelactual < 7) {
+        if(panelactual >= 0) {
             initSubPanel(panelactual);
-        }
-
-        try {
-            if (subPanel[panelactual] != null && panelactual >= 0) {
-                subPanel[panelactual].setVisible(false);
-                subPanel[panelactual].setBounds((int)(sizeX * 0.073),(int) (sizeY * 0.1604),(int)(sizeX *0.854),(int)(sizeY * 0.6792));
-                add(subPanel[panelactual]);
-                subPanel[panelactual].setVisible(true);
-            } else if(panelactual == -1){
-                mostrarBotones();
-            }else if (subPanel[panelactual] == null) {
-                throw new Exception("Panel vacio, Posiblemente no tienes permisos");
+            try {
+                if (subPanel[panelactual] != null) {
+                    subPanel[panelactual].setVisible(false);
+                    subPanel[panelactual].setBounds((int)(sizeX * 0.073),(int) (sizeY * 0.1604),(int)(sizeX *0.854),(int)(sizeY * 0.6792));
+                    add(subPanel[panelactual]);
+                    subPanel[panelactual].setVisible(true);
+                } else if (subPanel[panelactual] == null) {
+                    throw new Exception("Panel vacio, Posiblemente no tienes permisos");
+                }
+            }catch (Exception e){
+                System.out.println(e);
             }
-        }catch (Exception e){
-            System.out.println(e);
+        }else if(panelactual == -1){
+            mostrarBotones();
         }
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == boton1){
-            ocultarBotones();
-            back.setEnabled(true);
-            actualizarSubPabel(0);
+        if(e.getSource() == logout){
+            referencia.cerrarSesion();
         }else if(e.getSource() == back)
         {
             back.setEnabled(false);
             mostrarBotones();
             actualizarSubPabel(-1);
+        }else if(e.getSource() == boton1){
+            ocultarBotones();
+            back.setEnabled(true);
+            actualizarSubPabel(0);
+        }else if(e.getSource() == boton2){
+            ocultarBotones();
+            back.setEnabled(true);
+            actualizarSubPabel(1);
+        }else if(e.getSource() == boton3){
+            ocultarBotones();
+            back.setEnabled(true);
+            actualizarSubPabel(2);
+        }else if(e.getSource() == boton4){
+            ocultarBotones();
+            back.setEnabled(true);
+            actualizarSubPabel(3);
+        }else if(e.getSource() == boton5){
+            ocultarBotones();
+            back.setEnabled(true);
+            actualizarSubPabel(4);
+        }else if(e.getSource() == boton6){
+            ocultarBotones();
+            back.setEnabled(true);
+            actualizarSubPabel(5);
+        }else if(e.getSource() == boton7){
+            ocultarBotones();
+            back.setEnabled(true);
+            actualizarSubPabel(6);
         }
 
-        if(e.getSource() == logout){
-            referencia.cerrarSesion();
-        }
     }
 }
