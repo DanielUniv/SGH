@@ -22,7 +22,6 @@ public class Login extends JPanel implements ActionListener {
     private JPasswordField pass;
     private JButton init;
     private JTextArea mesg;
-    private String salt;
     private String outLog;
 
     public Login(int sizex,int sizey,Cliente referencia)
@@ -93,7 +92,7 @@ public class Login extends JPanel implements ActionListener {
     }
 
     private void hashPass(){
-        String entrada = String.valueOf(pass.getPassword()) + salt;
+        String entrada = String.valueOf(pass.getPassword());
         try {
             MessageDigest sumador = MessageDigest.getInstance("SHA-512");
             sumador.update(entrada.getBytes());
@@ -106,7 +105,6 @@ public class Login extends JPanel implements ActionListener {
             e.printStackTrace();
             System.out.println("Error sacando sha5");
         }
-        referencia.contrasenaListo(outLog);
     }
 
     public void error(String er){
@@ -117,14 +115,9 @@ public class Login extends JPanel implements ActionListener {
     }
 
     private void initSession(){
-        referencia.usuarioListo(user.getText());
-    }
-
-    public void setSalt(String sal){
-        salt = sal;
         hashPass();
+        referencia.iniciarSesion(this.user.getText(),this.outLog);
     }
-
 
     @Override
     public void actionPerformed(ActionEvent e) {

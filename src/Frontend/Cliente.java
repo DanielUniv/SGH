@@ -108,18 +108,11 @@ public class Cliente extends JFrame{
         }
     }
 
-    public void usuarioListo(String user){
-        Login a = (Login) panel[0];
-        a.setSalt("hola");
+
+    public void iniciarSesion(String user,String cont){
+
         this.usuario = user;
-    }
-
-    public void contrasenaListo(String cont){
         this.contrasena = cont;
-        iniciarSesion();
-    }
-
-    public void iniciarSesion(){
             priv = 4;
             try {
                 actualizar();
