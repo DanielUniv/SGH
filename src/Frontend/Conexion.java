@@ -29,7 +29,7 @@ public class Conexion{
     public  String pedir(String orden,String[] datos){
         this.peticion = orden;
         for(int i = 0;i < datos.length;i++){
-            this.peticion = peticion + ","+datos[i];
+            this.peticion = peticion + ":"+datos[i];
         }
 
         try{

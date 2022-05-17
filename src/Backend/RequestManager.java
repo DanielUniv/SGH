@@ -45,18 +45,16 @@ public class RequestManager implements Runnable{
 
     public void procesar() throws IOException{
         this.separador = new StringTokenizer(mensaje,":");
+        System.out.println(mensaje);
         int num = separador.countTokens();
         mensaje = separador.nextToken();
         num--;
         datos = new String[num];
         for(int i = 0; i < num; i++) {
             datos[i] = separador.nextToken();
-            responder();
         }
-    }
-
-    public void getSalt(){
-
+        respuesta = "Gerente";
+        responder();
     }
 
 
