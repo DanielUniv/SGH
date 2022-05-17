@@ -19,6 +19,7 @@ public class Cliente extends JFrame{
     private String usuario,contrasena;
     private JPanel[] panel;
     private int actual,priv;
+    private Conexion comunicacion;
 
     //Constructor de la clase principal del programa
     public Cliente(){
@@ -113,7 +114,27 @@ public class Cliente extends JFrame{
 
         this.usuario = user;
         this.contrasena = cont;
-            priv = 4;
+        String[] pil = new String[]{user,cont};
+
+        this.comunicacion = new Conexion();
+
+        String cargo = comunicacion.pedir("log",pil);
+        switch (cargo){
+            case "Admin":
+                priv = 4;
+                break;
+            case "Gerente":
+                priv = 3;
+                break;
+            case "Cajero":
+                priv = 2;
+                break;
+            case "Recepcionista":
+                priv = 1;
+                break;
+            default:
+                priv = 0;
+        }
             try {
                 actualizar();
             }catch (Exception e){

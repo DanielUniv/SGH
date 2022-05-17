@@ -7,7 +7,6 @@ import java.net.Socket;
 
 public class Conexion{
 
-    private Cliente manager;
     private int puerto;
     private String ip;
     private Socket servidor;
@@ -15,8 +14,7 @@ public class Conexion{
     private DataOutputStream salida;
     private String peticion,resultado;
 
-    public Conexion(Cliente manager){
-        this.manager = manager;
+    public Conexion(){
         ip = "localhost";
         puerto = 9572;
         try {
